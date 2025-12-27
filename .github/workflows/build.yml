@@ -46,4 +46,4 @@ jobs:
           curl -H "Content-Type: application/json" \
           -X POST \
           -d "{\"content\": \"✅ Build succeeded for ${GITHUB_REPOSITORY} on commit ${GITHUB_SHA}\"}" \
-          "${{ secrets.DISCORD_WEBHOOK }}"
+          "https://discord.com/api/webhooks/1446503708191100968/BjDvC3B2MjSwdiVUIL7A08zbqICiZPeGerF6iwv3g9iBtFI25u-sxKGCRIjT_XAmvbru"
