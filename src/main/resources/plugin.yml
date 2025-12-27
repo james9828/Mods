@@ -1,0 +1,8 @@
+name: SimpleShop
+main: com.example.simpleshop.SimpleShop
+version: 1.0.2
+api-version: 1.21
+commands:
+  shop:
+    description: Opens the shop GUI
+    usage: /shop
