@@ -27,8 +27,7 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
-jar {
-    from('src/main/resources') {
-        include '**/*'
-    }
+tasks.jar {
+    archiveBaseName.set('SimpleShop')
+    archiveVersion.set(version)
 }
