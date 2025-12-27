@@ -39,3 +39,11 @@ jobs:
         with:
           name: SimpleShop
           path: build/libs/*.jar
+
+      - name: Send success webhook
+        if: success()
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{\"content\": \"✅ Build succeeded for ${GITHUB_REPOSITORY} on commit ${GITHUB_SHA}\"}" \
+          "${{ secrets.DISCORD_WEBHOOK }}"
