@@ -1,33 +1,57 @@
 plugins {
-    id 'java'
+    id 'fabric-loom' version '1.7-SNAPSHOT'
+    id 'maven-publish'
 }
 
 group = 'com.example'
-version = '1.0.2'
+version = '1.0.0'
+
+base {
+    archivesName = 'no-break-delay'
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.fabricmc.net/' }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.21.1"
+    mappings loom.officialMojangMappings()
+
+    modImplementation "net.fabricmc:fabric-loader:0.15.11"
+
+    // Fabric API (client-side helpers, fine to include)
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.114.0+1.21.1"
+}
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+    withSourcesJar()
 }
 
-repositories {
-    mavenCentral()
-    maven {
-        name = 'papermc'
-        url = 'https://repo.papermc.io/repository/maven-public/'
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        register("no_break_delay") {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
     }
 }
 
-dependencies {
-    compileOnly 'io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT'
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-}
-
-tasks.jar {
-    archiveBaseName.set('SimpleShop')
-    archiveVersion.set(version)
+    options.encoding = "UTF-8"
+    options.release = 21
 }

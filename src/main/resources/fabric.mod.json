@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "no_break_delay",
+  "version": "1.0.0",
+  "name": "No Break Delay",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "com.example.nobreakdelay.NoBreakDelayMod"
+    ]
+  },
+  "mixins": [
+    "no_break_delay.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": "1.21.1",
+    "fabric-api": "*"
+  }
+}
